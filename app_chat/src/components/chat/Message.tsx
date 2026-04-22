@@ -29,46 +29,46 @@ function Message({ content, variant, timestamp, senderName }: MessageProps) {
 
     return (
         <div className={`flex w-full group ${variant === 'user' ? 'justify-end' : 'justify-start'} mb-6 animate-in fade-in slide-in-from-bottom-2 duration-300`}>
-            <div className={`flex gap-3 max-w-[85%] md:max-w-[75%] ${variant === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+            <div className={`flex gap-2 sm:gap-3 max-w-[92%] sm:max-w-[85%] md:max-w-[75%] ${variant === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
                 {/* Avatar */}
-                <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm ${
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm ${
                     variant === 'user' ? 'bg-brand-primary' : 'bg-brand-surface border border-brand-border'
                 }`}>
                     {variant === 'user' ? (
-                        <User className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                        <User className="w-4 h-4 text-white" />
                     ) : (
-                        <Bot className="w-5 h-5 md:w-6 md:h-6 text-brand-text-dim" />
+                        <Bot className="w-4 h-4 text-brand-text-dim" />
                     )}
                 </div>
 
                 {/* Content Area */}
-                <div className={`flex flex-col ${variant === 'user' ? 'items-end' : 'items-start'} space-y-1 min-w-0`}>
+                <div className={`flex flex-col ${variant === 'user' ? 'items-end' : 'items-start'} space-y-1 min-w-0 flex-1`}>
                     {/* Sender Info */}
                     <div className="flex items-center gap-2 px-1 max-w-full">
-                        <span className="text-xs font-medium text-brand-text-dim uppercase tracking-wider truncate">
+                        <span className="text-[10px] sm:text-xs font-medium text-brand-text-dim uppercase tracking-wider truncate">
                             {name}
                         </span>
-                        <span className="text-[10px] text-brand-text-dim/60 flex-shrink-0">
+                        <span className="text-[9px] sm:text-[10px] text-brand-text-dim/60 flex-shrink-0">
                             {timestamp}
                         </span>
                     </div>
 
                     {/* Message Bubble */}
                     <div className="relative group/bubble max-w-full">
-                        <div className={`rounded-2xl px-4 py-3 shadow-sm transition-all min-w-0 break-words ${
+                        <div className={`rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 shadow-sm transition-all min-w-0 break-words ${
                             variant === 'user'
                                 ? 'bg-brand-primary text-white rounded-tr-none'
                                 : 'bg-brand-bg text-brand-text rounded-tl-none border border-brand-border hover:border-brand-text/20'
                         }`}>
-                            <div className={`markdown-content prose-sm max-w-none break-words overflow-hidden ${variant === 'user' ? 'text-white' : 'text-brand-text'}`}>
+                            <div className={`markdown-content prose-sm max-w-none break-words overflow-hidden hyphens-auto ${variant === 'user' ? 'text-white' : 'text-brand-text'}`}>
                                 <ReactMarkdown
                                     remarkPlugins={[remarkGfm, remarkBreaks]}
                                     components={{
-                                        p: ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed font-normal break-words overflow-wrap-anywhere">{children}</p>,
+                                        p: ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed font-normal break-words overflow-wrap-anywhere whitespace-pre-wrap">{children}</p>,
                                         strong: ({ children }) => <strong className="font-bold">{children}</strong>,
                                         em: ({ children }) => <em className="italic">{children}</em>,
-                                        ul: ({ children }) => <ul className="list-disc ml-5 mb-2 space-y-1">{children}</ul>,
-                                        ol: ({ children }) => <ol className="list-decimal ml-5 mb-2 space-y-1">{children}</ol>,
+                                        ul: ({ children }) => <ul className="list-disc ml-4 mb-2 space-y-1">{children}</ul>,
+                                        ol: ({ children }) => <ol className="list-decimal ml-4 mb-2 space-y-1">{children}</ol>,
                                         li: ({ children }) => <li className="leading-relaxed break-words">{children}</li>,
                                         code: ({ children, className }) => {
                                             const isInline = !className;
@@ -77,9 +77,11 @@ function Message({ content, variant, timestamp, senderName }: MessageProps) {
                                                     {children}
                                                 </code>
                                             ) : (
-                                                <pre className="p-3 rounded-lg bg-gray-900 text-gray-100 overflow-x-auto my-2 font-mono text-xs leading-normal max-w-full border border-white/10">
-                                                    <code>{children}</code>
-                                                </pre>
+                                                <div className="relative group/code my-2 max-w-full">
+                                                    <pre className="p-3 rounded-lg bg-gray-900 text-gray-100 overflow-x-auto font-mono text-xs border border-white/10 scrollbar-thin scrollbar-thumb-white/10">
+                                                        <code>{children}</code>
+                                                    </pre>
+                                                </div>
                                             );
                                         },
                                     }}
@@ -93,9 +95,9 @@ function Message({ content, variant, timestamp, senderName }: MessageProps) {
                         {variant === 'assistant' && (
                             <button
                                 onClick={handleCopy}
-                                className="absolute top-2 -right-10 p-1.5 rounded-lg bg-brand-bg shadow-md border border-brand-border
+                                className="absolute top-2 -right-8 sm:-right-10 p-1.5 rounded-lg bg-brand-bg shadow-md border border-brand-border
                                     opacity-0 group-hover/bubble:opacity-100 transition-all duration-200
-                                    text-brand-text-dim hover:text-brand-text hover:bg-brand-surface focus:opacity-100 focus:outline-none"
+                                    text-brand-text-dim hover:text-brand-text hover:bg-brand-surface focus:opacity-100 focus:outline-none hidden sm:flex"
                                 title="Копировать в буфер"
                             >
                                 {isCopied ? (

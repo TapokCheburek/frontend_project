@@ -25,7 +25,7 @@ function MessageList({ messages, isLoading }: MessageListProps) {
     }
 
     return (
-        <div className="flex-1 overflow-y-auto p-4 md:p-6 bg-brand-surface/30">
+        <div className="flex-1 overflow-y-auto p-2 sm:p-4 md:p-6 bg-brand-surface/30 custom-scrollbar">
             <div className="max-w-4xl mx-auto">
                 {messages.map((msg) => (
                     <Message

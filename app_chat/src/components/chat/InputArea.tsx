@@ -39,18 +39,18 @@ function InputArea({ onSend, isLoading = false }: InputAreaProps) {
     };
 
     return (
-        <div className="border-t border-brand-border bg-brand-bg p-4 md:p-6 shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
+        <div className="border-t border-brand-border bg-brand-bg p-2 sm:p-4 md:p-6 shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
             <div className="max-w-4xl mx-auto">
-                <div className={`flex items-end gap-2 md:gap-4 bg-brand-surface rounded-2xl p-2 border border-brand-border transition-all ${
+                <div className={`flex items-end gap-1 sm:gap-3 bg-brand-surface rounded-2xl p-1.5 border border-brand-border transition-all ${
                     isLoading ? 'opacity-70 cursor-not-allowed' : 'focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/10'
                 }`}>
                     {/* Кнопка прикрепления изображения */}
                     <button
                         title="Прикрепить изображение"
                         disabled={isLoading}
-                        className="p-2 text-brand-text-dim hover:text-brand-primary hover:bg-brand-bg rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="p-3 text-brand-text-dim hover:text-brand-primary hover:bg-brand-bg rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
                     >
-                        <ImagePlus className="w-5 h-5 md:w-6 md:h-6" />
+                        <ImagePlus className="w-6 h-6" />
                     </button>
 
                     {/* Поле ввода */}
@@ -61,17 +61,17 @@ function InputArea({ onSend, isLoading = false }: InputAreaProps) {
                         onChange={(e) => setMessage(e.target.value)}
                         onKeyDown={handleKeyDown}
                         disabled={isLoading}
-                        placeholder={isLoading ? "Подождите, ассистент отвечает..." : "Напишите сообщение..."}
-                        className="flex-1 bg-transparent border-none focus:ring-0 resize-none py-3 px-2 text-sm md:text-base text-brand-text placeholder-brand-text-dim/40 min-h-[44px] max-h-[120px] disabled:cursor-not-allowed text-balance"
+                        placeholder={isLoading ? "Ждите..." : "Сообщение..."}
+                        className="flex-1 bg-transparent border-none focus:ring-0 resize-none py-3 px-1 text-sm md:text-base text-brand-text placeholder-brand-text-dim/40 min-h-[44px] max-h-[120px] disabled:cursor-not-allowed"
                     />
 
                     {/* Кнопки управления */}
-                    <div className="flex gap-2 p-1">
+                    <div className="flex gap-1 p-0.5">
                         {isLoading ? (
                             <button
                                 onClick={handleStop}
-                                title="Остановить генерацию"
-                                className="p-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-all shadow-md flex items-center justify-center animate-pulse"
+                                title="Остановить"
+                                className="p-3 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-all shadow-md flex items-center justify-center animate-pulse"
                             >
                                 <Square className="w-5 h-5 fill-current" />
                             </button>
@@ -79,7 +79,7 @@ function InputArea({ onSend, isLoading = false }: InputAreaProps) {
                             <button
                                 onClick={handleSend}
                                 disabled={!message.trim()}
-                                className={`p-2 rounded-xl flex items-center justify-center transition-all ${
+                                className={`p-3 rounded-xl flex items-center justify-center transition-all ${
                                     message.trim()
                                         ? 'bg-brand-primary text-white hover:opacity-90 shadow-md translate-y-[-1px]'
                                         : 'bg-brand-border text-brand-text-dim cursor-not-allowed'

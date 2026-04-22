@@ -14,13 +14,13 @@ function AppLayout() {
         <div className="flex h-screen overflow-hidden bg-brand-surface">
             <button
                 onClick={toggleSidebar}
-                className="fixed top-4 left-4 z-50 lg:hidden bg-brand-bg p-2 rounded-xl shadow-lg border border-brand-border text-brand-text-dim hover:text-brand-text transition-colors"
+                className="fixed top-3 left-3 z-50 lg:hidden bg-brand-surface p-3 rounded-xl shadow-xl border border-brand-border text-brand-primary hover:bg-brand-bg transition-all active:scale-90"
                 aria-label="Toggle sidebar"
             >
                 {isSidebarOpen ? (
-                    <X className="w-6 h-6 text-gray-700" />
+                    <X className="w-6 h-6" />
                 ) : (
-                    <Menu className="w-6 h-6 text-gray-700" />
+                    <Menu className="w-6 h-6" />
                 )}
             </button>
 
