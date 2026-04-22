@@ -23,25 +23,21 @@ function ChatList({
                       onEditChat,
                       onDeleteChat,
                   }: ChatListProps) {
-    const filteredChats = chats.filter(chat =>
-        chat.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
     return (
-        <div className="space-y-2">
-            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-2">
-                Недавние чаты
+        <div className="space-y-4">
+            <div className="px-4 mt-2">
+                <span className="text-[10px] font-bold text-brand-text-dim/50 uppercase tracking-widest px-2">История чатов</span>
             </div>
 
-            {filteredChats.length === 0 ? (
-                <div className="text-center py-8 px-4">
-                    <p className="text-sm text-gray-500">
-                        {searchQuery ? 'Чаты не найдены' : 'Нет чатов'}
+            {chats.length === 0 ? (
+                <div className="text-center py-10 px-4 animate-in fade-in duration-500">
+                    <p className="text-sm text-brand-text-dim">
+                        {searchQuery ? 'Совпадений не найдено' : 'Список чатов пуст'}
                     </p>
                 </div>
             ) : (
-                <div className="space-y-1">
-                    {filteredChats.map(chat => (
+                <div className="space-y-1 px-2">
+                    {chats.map(chat => (
                         <ChatItem
                             key={chat.id}
                             id={chat.id}

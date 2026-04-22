@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 import Message from './Message';
 import EmptyState from '../ui/EmptyState';
 import TypingIndicator from './TypingIndicator';
-import type { MessageData } from '../../types/message';
+import type { Message as MessageType } from '../../types/MessageType';
 
 interface MessageListProps {
-    messages: MessageData[];
+    messages: MessageType[];
     isLoading?: boolean;
 }
 

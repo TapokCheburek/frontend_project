@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
 import { Copy, Check, User, Bot } from 'lucide-react';
-import type { MessageRole } from '../../types/message';
+import type { MessageRole } from '../../types/MessageType';
 
 interface MessageProps {
     content: string;
