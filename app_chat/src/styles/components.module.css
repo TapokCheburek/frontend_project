@@ -1,0 +1,11 @@
+/* Файл для стилей компонентов (CSS Modules) */
+.glassPanel {
+    background-color: rgb(var(--bg-surface-rgb) / 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgb(var(--border-color-rgb));
+}
+
+.primaryGradient {
+    background: linear-gradient(to right, rgb(var(--primary-color-rgb)), #2563eb);
+}

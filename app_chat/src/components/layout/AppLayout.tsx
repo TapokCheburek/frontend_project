@@ -11,10 +11,10 @@ function AppLayout() {
     };
 
     return (
-        <div className="flex h-screen overflow-hidden bg-gray-50">
+        <div className="flex h-screen overflow-hidden bg-brand-surface">
             <button
                 onClick={toggleSidebar}
-                className="fixed top-4 left-4 z-50 lg:hidden bg-white p-2 rounded-lg shadow-lg hover:bg-gray-100 transition-colors"
+                className="fixed top-4 left-4 z-50 lg:hidden bg-brand-bg p-2 rounded-xl shadow-lg border border-brand-border text-brand-text-dim hover:text-brand-text transition-colors"
                 aria-label="Toggle sidebar"
             >
                 {isSidebarOpen ? (

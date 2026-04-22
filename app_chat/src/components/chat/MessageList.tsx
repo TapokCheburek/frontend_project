@@ -1,48 +1,43 @@
+import { useEffect, useRef } from 'react';
 import Message from './Message';
+import EmptyState from '../ui/EmptyState';
+import TypingIndicator from './TypingIndicator';
+import type { MessageData } from '../../types/message';
 
-interface MessageData {
-    id: string;
-    text: string;
-    sender: 'user' | 'assistant';
-    timestamp: string;
+interface MessageListProps {
+    messages: MessageData[];
+    isLoading?: boolean;
 }
 
-const MOCK_MESSAGES: MessageData[] = [
-    {
-        id: '1',
-        text: 'Привет! Покажи пример **жирного текста**, *курсива* и какого-нибудь кода на JavaScript.',
-        sender: 'user',
-        timestamp: '10:00',
-    },
-    {
-        id: '2',
-        text: 'Конечно! Вот основные элементы форматирования:\n\n' +
-            '1. **Жирный текст** для акцентов\n' +
-            '2. *Курсив* для примечаний\n' +
-            '3. Списки (как этот)\n\n' +
-            'А вот и пример блока кода:\n' +
-            '```javascript\n' +
-            'function helloWorld() {\n' +
-            '  console.log("Hello, AI Studio!");\n' +
-            '}\n' +
-            '```',
-        sender: 'assistant',
-        timestamp: '10:01',
-    }
-];
+function MessageList({ messages, isLoading }: MessageListProps) {
+    const messagesEndRef = useRef<HTMLDivElement>(null);
 
-function MessageList() {
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages, isLoading]);
+
+    if (messages.length === 0 && !isLoading) {
+        return <EmptyState />;
+    }
+
     return (
-        <div className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50/50">
+        <div className="flex-1 overflow-y-auto p-4 md:p-6 bg-brand-surface/30">
             <div className="max-w-4xl mx-auto">
-                {MOCK_MESSAGES.map((msg) => (
+                {messages.map((msg) => (
                     <Message
                         key={msg.id}
-                        text={msg.text}
-                        sender={msg.sender}
+                        content={msg.content}
+                        variant={msg.role}
                         timestamp={msg.timestamp}
                     />
                 ))}
+
+                <TypingIndicator isVisible={isLoading} />
+                <div ref={messagesEndRef} />
             </div>
         </div>
     );

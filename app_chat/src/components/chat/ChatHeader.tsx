@@ -1,4 +1,5 @@
 import { ChevronDown, Settings } from 'lucide-react';
+import { Toggle } from '../ui/Toggle';
 
 interface ChatHeaderProps {
     chatTitle: string;
@@ -7,18 +8,21 @@ interface ChatHeaderProps {
 
 function ChatHeader({ chatTitle, onMenu }: ChatHeaderProps) {
     return (
-        <div className="border-b border-gray-200 bg-white px-6 py-4 flex items-center justify-between">
+        <div className="border-b border-brand-border bg-brand-bg px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
-                <h1 className="text-xl font-semibold text-gray-900">{chatTitle}</h1>
-                <ChevronDown className="w-5 h-5 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
+                <h1 className="text-xl font-semibold text-brand-text">{chatTitle}</h1>
+                <ChevronDown className="w-5 h-5 text-brand-text-dim cursor-pointer hover:text-brand-text transition-colors" />
             </div>
-            <button
-                onClick={onMenu}
-                className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-500 hover:text-gray-700"
-                title="Настройки"
-            >
-                <Settings className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-4">
+                <Toggle />
+                <button
+                    onClick={onMenu}
+                    className="p-2 rounded-xl border border-brand-border bg-brand-surface text-brand-text-dim hover:text-brand-text hover:bg-brand-border/10 transition-all"
+                    title="Настройки"
+                >
+                    <Settings className="w-5 h-5" />
+                </button>
+            </div>
         </div>
     );
 }
