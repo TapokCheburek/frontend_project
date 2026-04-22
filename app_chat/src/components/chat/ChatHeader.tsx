@@ -1,4 +1,4 @@
-import { ChevronDown, MoreVertical } from 'lucide-react';
+import { ChevronDown, Settings } from 'lucide-react';
 
 interface ChatHeaderProps {
     chatTitle: string;
@@ -15,8 +15,9 @@ function ChatHeader({ chatTitle, onMenu }: ChatHeaderProps) {
             <button
                 onClick={onMenu}
                 className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-500 hover:text-gray-700"
+                title="Настройки"
             >
-                <MoreVertical className="w-5 h-5" />
+                <Settings className="w-5 h-5" />
             </button>
         </div>
     );

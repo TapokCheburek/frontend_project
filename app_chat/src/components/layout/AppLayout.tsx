@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import Sidebar from '../sidebar/Sidebar';
-import ChatArea from '../chat/ChatArea';
+import ChatWindow from '../chat/ChatWindow';
 
 function AppLayout() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -42,7 +42,7 @@ function AppLayout() {
             )}
 
             <div className="flex-1 flex flex-col overflow-hidden">
-                <ChatArea />
+                <ChatWindow />
             </div>
         </div>
     );
