@@ -1,9 +1,8 @@
 
 ## Демонстрация работы
+Файл Фронтент.mp4, он так же приложен к ответу.
+https://github.com/TapokCheburek/frontend_project/blob/main/%D0%A4%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82.mp4
 
-<video src="https://github.com/TapokCheburek/frontend_project/raw/main/%D0%A4%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82.mp4" controls="controls" width="100%">
-  Ваш браузер не поддерживает тег video. <a href="https://github.com/TapokCheburek/frontend_project/blob/main/%D0%A4%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82.mp4">Смотреть видео на GitHub</a>.
-</video>
 
 
 ## Установка и локальный запуск
