@@ -1,6 +1,9 @@
-import React, { createContext, useContext, useReducer, type ReactNode } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react';
 import type { Chat, ChatState, ChatAction } from '../../types/chat';
 import type { Message } from '../../types/MessageType';
+import { storage } from '../../utils/storage';
+
+const STORAGE_KEY = 'ai_studio_chat_state';
 
 interface ChatContextType extends ChatState {
     setActiveChat: (id: string) => void;
@@ -12,7 +15,7 @@ interface ChatContextType extends ChatState {
     deleteChat: (chatId: string) => void;
 }
 
-const INITIAL_CHATS: Chat[] = [
+const DEFAULT_CHATS: Chat[] = [
     {
         id: '1',
         title: 'Проект по React компонентам',
@@ -38,11 +41,21 @@ const INITIAL_CHATS: Chat[] = [
     },
 ];
 
-const initialState: ChatState = {
-    chats: INITIAL_CHATS,
-    activeChatId: '1',
-    isLoading: false,
-    error: null,
+const getInitialState = (): ChatState => {
+    const savedState = storage.load<ChatState>(STORAGE_KEY);
+    if (savedState) {
+        return {
+            ...savedState,
+            isLoading: false, // Don't persist loading state
+            error: null       // Don't persist error state
+        };
+    }
+    return {
+        chats: DEFAULT_CHATS,
+        activeChatId: '1',
+        isLoading: false,
+        error: null,
+    };
 };
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -100,7 +113,14 @@ function chatReducer(state: ChatState, action: ChatAction): ChatState {
 }
 
 export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [state, dispatch] = useReducer(chatReducer, initialState);
+    const [state, dispatch] = useReducer(chatReducer, undefined, getInitialState);
+
+    useEffect(() => {
+        storage.save(STORAGE_KEY, {
+            chats: state.chats,
+            activeChatId: state.activeChatId
+        });
+    }, [state.chats, state.activeChatId]);
 
     const setActiveChat = (id: string) => dispatch({ type: 'SET_ACTIVE_CHAT', payload: id });
 
